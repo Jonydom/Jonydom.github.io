@@ -8,8 +8,8 @@
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="1. mmpretrain框架搭建在命令行中输入：
-# conda create -n open-mmlab python=3.8 pytorch==1.10.1 torchvision==0.11.2 cudatoolkit=11.3 -">
+    <meta name="description" content="
+本文是对上海人工智能实验室的AI框架mmpretrain的介绍。PyTorch、tensorflow等训练框架已经是众多炼丹师的首选了，只要遵守一定的规则，撰写一份属于自己的训练模板代码，使用起来也非常方便。那么我们为什么要用像mmpre">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -330,7 +330,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/Jonydom/myPic/img/20230717195711.png')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -485,14 +485,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    620
+                    831
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
                 
@@ -508,7 +508,10 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-mmpretrain框架搭建"><a href="#1-mmpretrain框架搭建" class="headerlink" title="1. mmpretrain框架搭建"></a>1. mmpretrain框架搭建</h2><p>在命令行中输入：</p>
+                <blockquote>
+<p>本文是对上海人工智能实验室的AI框架mmpretrain的介绍。PyTorch、tensorflow等训练框架已经是众多炼丹师的首选了，只要遵守一定的规则，撰写一份属于自己的训练模板代码，使用起来也非常方便。那么我们为什么要用像mmpretrain这样的框架来训练模型呢？因为出于便捷性和统一性的考虑，每个大实验室或者AI公司团队都有属于自己的训练框架，充分考虑了炼丹师们的所有需求，只需修改其中的配置文件即可轻松调参训练和验证，炼丹师们无需关注代码，只需调参即可，极大的节省了的时间成本。</p>
+</blockquote>
+<h2 id="1-mmpretrain框架搭建"><a href="#1-mmpretrain框架搭建" class="headerlink" title="1. mmpretrain框架搭建"></a>1. mmpretrain框架搭建</h2><p>在命令行中输入：</p>
 <pre class="line-numbers language-shell"><code class="language-shell"># conda create -n open-mmlab python=3.8 pytorch==1.10.1 torchvision==0.11.2 cudatoolkit=11.3 -c pytorch -y
 conda create -n open-mmlab python=3.8 pytorch==1.12.0 torchvision==0.13.0 cudatoolkit=11.3 -c pytorch -y
 conda activate open-mmlab
@@ -680,7 +683,11 @@ model <span class="token operator">=</span> get_model<span class="token punctuat
 <blockquote>
 <p>注册model</p>
 </blockquote>
-<h2 id="模型训练（finetune）"><a href="#模型训练（finetune）" class="headerlink" title="模型训练（finetune）"></a>模型训练（finetune）</h2><h2 id="模型推理"><a href="#模型推理" class="headerlink" title="模型推理"></a>模型推理</h2>
+<h2 id="3-模型训练（finetune）"><a href="#3-模型训练（finetune）" class="headerlink" title="3. 模型训练（finetune）"></a>3. 模型训练（finetune）</h2><blockquote>
+<p>以ResNet18训练ImageNet-mini为例</p>
+</blockquote>
+<p>熟悉mmpretrain的configs</p>
+<h3 id="3-1"><a href="#3-1" class="headerlink" title="3.1"></a>3.1</h3><h3 id="3-2"><a href="#3-2" class="headerlink" title="3.2"></a>3.2</h3><h3 id="3-3"><a href="#3-3" class="headerlink" title="3.3"></a>3.3</h3><h2 id="模型推理"><a href="#模型推理" class="headerlink" title="模型推理"></a>模型推理</h2>
             </div>
             <hr />
 
@@ -1172,15 +1179,16 @@ model <span class="token operator">=</span> get_model<span class="token punctuat
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/28.jpg" class="responsive-img" alt="imagenet1k_learning">
+                        <img src="/medias/featureimages/24.jpg" class="responsive-img" alt="Imagenet1k_learning">
                         
-                        <span class="card-title">imagenet1k_learning</span>
+                        <span class="card-title">Imagenet1k_learning</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            ImageNet数据集介绍ImageNet数据集预处理## 
+
                         
                     </div>
                     <div class="publish-info">
@@ -1427,7 +1435,7 @@ When？什么时候开始写的？第一次写博客是 2015 年了，在 CSDN �
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">4.2k</span>
+            <span class="white-color">4.7k</span>
             
 
             <br>

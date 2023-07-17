@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://jonydom.github.io/2023/07/17/blog-develop/</loc>
+    
+    <lastmod>2023-07-17T13:40:42.668Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://jonydom.github.io/2023/07/17/mmpretrain-learning/</loc>
     
-    <lastmod>2023-07-17T10:06:56.018Z</lastmod>
+    <lastmod>2023-07-17T13:18:11.267Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://jonydom.github.io/2023/07/17/imagenet1k-learning/</loc>
     
-    <lastmod>2023-07-17T09:31:10.832Z</lastmod>
+    <lastmod>2023-07-17T11:29:20.065Z</lastmod>
     
   </url>
   
@@ -23,14 +30,14 @@
   </url>
   
   <url>
-    <loc>https://jonydom.github.io/friends/index.html</loc>
+    <loc>https://jonydom.github.io/tags/index.html</loc>
     
     <lastmod>2023-07-15T13:28:29.599Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://jonydom.github.io/tags/index.html</loc>
+    <loc>https://jonydom.github.io/friends/index.html</loc>
     
     <lastmod>2023-07-15T13:28:29.599Z</lastmod>
     

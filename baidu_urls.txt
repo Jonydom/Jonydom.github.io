@@ -1,3 +1,4 @@
+https://jonydom.github.io/2023/07/17/blog-develop/
 https://jonydom.github.io/2023/07/17/imagenet1k-learning/
 https://jonydom.github.io/2023/07/17/mmpretrain-learning/
 https://jonydom.github.io/2023/07/17/5w2h-godweiyang/

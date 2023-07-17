@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jonydom.github.io/"/>
-  <updated>2023-07-17T09:31:10.832Z</updated>
+  <updated>2023-07-17T13:40:42.668Z</updated>
   <id>https://jonydom.github.io/</id>
   
   <author>
@@ -17,13 +17,43 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>imagenet1k_learning</title>
+    <title>blog_develop</title>
+    <link href="https://jonydom.github.io/2023/07/17/blog-develop/"/>
+    <id>https://jonydom.github.io/2023/07/17/blog-develop/</id>
+    <published>2023-07-17T13:19:13.000Z</published>
+    <updated>2023-07-17T13:40:42.668Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Bug&quot;&gt;&lt;a href=&quot;#Bug&quot; class=&quot;headerlink&quot; title=&quot;Bug&quot;&gt;&lt;/a&gt;Bug&lt;/h2&gt;&lt;h3 id=&quot;个人博客（Hexo-VScode-Paste-Image-PicGo）&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Imagenet1k_learning</title>
     <link href="https://jonydom.github.io/2023/07/17/imagenet1k-learning/"/>
     <id>https://jonydom.github.io/2023/07/17/imagenet1k-learning/</id>
     <published>2023-07-17T09:30:45.000Z</published>
-    <updated>2023-07-17T09:31:10.832Z</updated>
+    <updated>2023-07-17T11:29:20.065Z</updated>
     
     <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;ImageNet数据集介绍&quot;&gt;&lt;a href=&quot;#ImageNet数据集介绍&quot; class=&quot;headerlink&quot; title=&quot;ImageNet数据集介绍&quot;&gt;&lt;/a&gt;ImageNet数据集介绍&lt;/h2&gt;&lt;h2 id=&quot;ImageNet数据集预处理&quot;&gt;&lt;a
+        
+      
     
     </summary>
     
@@ -39,7 +69,7 @@
     <link href="https://jonydom.github.io/2023/07/17/mmpretrain-learning/"/>
     <id>https://jonydom.github.io/2023/07/17/mmpretrain-learning/</id>
     <published>2023-07-17T03:30:40.000Z</published>
-    <updated>2023-07-17T10:06:56.018Z</updated>
+    <updated>2023-07-17T13:18:11.267Z</updated>
     
     <summary type="html">
     
@@ -47,7 +77,8 @@
       
         
         
-          &lt;h2 id=&quot;1-mmpretrain框架搭建&quot;&gt;&lt;a href=&quot;#1-mmpretrain框架搭建&quot; class=&quot;headerlink&quot; title=&quot;1. mmpretrain框架搭建&quot;&gt;&lt;/a&gt;1.
+          &lt;blockquote&gt;
+&lt;p&gt;本文是对上海人工智能实验室的AI框架mmpretrain的介绍。PyTorch、tensorflow等训练框架已经是众多炼丹师的首选了，只要遵守一定的规则，撰写一份属于自己的训练模板代码，使用起来也非常方便。那么我们为什么要用像mmpretrain
         
       
     
