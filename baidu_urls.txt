@@ -1,1 +1,3 @@
-https://jonydom.github.io/2020/01/14/5w2h-godweiyang/
+https://jonydom.github.io/2023/07/17/imagenet1k-learning/
+https://jonydom.github.io/2023/07/17/mmpretrain-learning/
+https://jonydom.github.io/2023/07/17/5w2h-godweiyang/
