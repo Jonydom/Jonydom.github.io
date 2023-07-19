@@ -4,12 +4,16 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="3D | 学习mmpretrain框架, ECNU NLP DeepLearning AntNLP 姜磊 godweiyang Jonydom CV 深度学习 算法码上来">
+    <meta name="keywords" content="mynote, ECNU NLP DeepLearning AntNLP 姜磊 godweiyang Jonydom CV 深度学习 算法码上来">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="
-本文是对上海人工智能实验室的AI框架mmpretrain的介绍。PyTorch、tensorflow等训练框架已经是众多炼丹师的首选了，只要遵守一定的规则，撰写一份属于自己的训练模板代码，使用起来也非常方便。那么我们为什么要用像mmpre">
+    <meta name="description" content="git bash 安装 tree.exe从 Tree for Windows 网站下载 Binaries zip 包，解压后将 bin 目录下的 tree.exe 放在 D:\Git\mingw64\bin 目录下。
+
+
+
+tree 命令
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +21,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>3D | 学习mmpretrain框架 | Jonydom的博客</title>
+    <title>mynote | Jonydom的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -330,13 +334,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/Jonydom/myPic/img/20230717195711.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        3D | 学习mmpretrain框架
+                        mynote
                     </div>
                 </div>
             </div>
@@ -471,7 +475,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-07-17
+                    2023-07-18
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -485,14 +489,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    831
+                    104
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    1 分
                 </div>
                 
                 
@@ -508,186 +512,23 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>本文是对上海人工智能实验室的AI框架mmpretrain的介绍。PyTorch、tensorflow等训练框架已经是众多炼丹师的首选了，只要遵守一定的规则，撰写一份属于自己的训练模板代码，使用起来也非常方便。那么我们为什么要用像mmpretrain这样的框架来训练模型呢？因为出于便捷性和统一性的考虑，每个大实验室或者AI公司团队都有属于自己的训练框架，充分考虑了炼丹师们的所有需求，只需修改其中的配置文件即可轻松调参训练和验证，炼丹师们无需关注代码，只需调参即可，极大的节省了的时间成本。</p>
-</blockquote>
-<h2 id="1-mmpretrain框架搭建"><a href="#1-mmpretrain框架搭建" class="headerlink" title="1. mmpretrain框架搭建"></a>1. mmpretrain框架搭建</h2><p>在命令行中输入：</p>
-<pre class="line-numbers language-shell"><code class="language-shell"># conda create -n open-mmlab python=3.8 pytorch==1.10.1 torchvision==0.11.2 cudatoolkit=11.3 -c pytorch -y
-conda create -n open-mmlab python=3.8 pytorch==1.12.0 torchvision==0.13.0 cudatoolkit=11.3 -c pytorch -y
-conda activate open-mmlab
-pip3 install openmim
-git clone https://github.com/open-mmlab/mmpretrain.git
-cd mmpretrain
-mim install -e .<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>官方提供的pytorch版本是1.10.1，torchvision版本是0.11.2，pytorch和torchvision版本可自行调整。</p>
-<p><strong>pytorch与相应torchvision版本对应表：</strong></p>
-<p>以下版本截止2023年4月6日</p>
-<table>
-<thead>
-<tr>
-<th align="center">pytorch</th>
-<th align="center">torchvision</th>
-<th align="center">python</th>
-<th align="center">cuda</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">2.0.0</td>
-<td align="center">&gt;0.14</td>
-<td align="center">&gt;3.7</td>
-<td align="center">11.7,11.8</td>
-</tr>
-<tr>
-<td align="center">1.12.0</td>
-<td align="center">0.12</td>
-<td align="center">3.7-3.9</td>
-<td align="center">10.2(不支持windows),11.3,11.6</td>
-</tr>
-<tr>
-<td align="center">1.11.0</td>
-<td align="center">0.12.0</td>
-<td align="center">&gt;=3.6</td>
-<td align="center">11.3,10.2</td>
-</tr>
-<tr>
-<td align="center">1.10.0/1</td>
-<td align="center">0.11.0/2</td>
-<td align="center">&gt;=3.6</td>
-<td align="center">10.2,11.3</td>
-</tr>
-<tr>
-<td align="center">1.9.0</td>
-<td align="center">0.10.0</td>
-<td align="center">&gt;=3.6</td>
-<td align="center">10.2,11.3</td>
-</tr>
-<tr>
-<td align="center">1.8.0</td>
-<td align="center">0.9.0</td>
-<td align="center">&gt;=3.6</td>
-<td align="center">10.2,11.1</td>
-</tr>
-<tr>
-<td align="center">1.7.1</td>
-<td align="center">0.8.2</td>
-<td align="center">&gt;=3.6</td>
-<td align="center">9.2, 10.1,10.2,11.0</td>
-</tr>
-<tr>
-<td align="center">1.7.0</td>
-<td align="center">0.8.0</td>
-<td align="center">&gt;=3.6</td>
-<td align="center">9.2, 10.1,10.2,11.0</td>
-</tr>
-<tr>
-<td align="center">1.6.0</td>
-<td align="center">0.7.0</td>
-<td align="center">&gt;=3.6</td>
-<td align="center">9.2, 10.1,10.2</td>
-</tr>
-<tr>
-<td align="center">1.5.1</td>
-<td align="center">0.6.1</td>
-<td align="center">&gt;=3.6</td>
-<td align="center">9.2, 10.1,10.2</td>
-</tr>
-<tr>
-<td align="center">1.5.0</td>
-<td align="center">0.6.0</td>
-<td align="center">&gt;=3.6</td>
-<td align="center">9.2, 10.1,10.2</td>
-</tr>
-<tr>
-<td align="center">1.4.0</td>
-<td align="center">0.5.0</td>
-<td align="center">==2.7, &gt;=3.5, &lt;=3.8</td>
-<td align="center">9.2, 10.0</td>
-</tr>
-<tr>
-<td align="center">1.3.1</td>
-<td align="center">0.4.2</td>
-<td align="center">==2.7, &gt;=3.5, &lt;=3.7</td>
-<td align="center">9.2, 10.0</td>
-</tr>
-<tr>
-<td align="center">1.3.0</td>
-<td align="center">0.4.1</td>
-<td align="center">==2.7, &gt;=3.5, &lt;=3.7</td>
-<td align="center">9.2, 10.0</td>
-</tr>
-<tr>
-<td align="center">1.2.0</td>
-<td align="center">0.4.0</td>
-<td align="center">==2.7, &gt;=3.5, &lt;=3.7</td>
-<td align="center">9.2, 10.0</td>
-</tr>
-<tr>
-<td align="center">1.1.0</td>
-<td align="center">0.3.0</td>
-<td align="center">==2.7, &gt;=3.5, &lt;=3.7</td>
-<td align="center">9.0, 10.0</td>
-</tr>
-<tr>
-<td align="center">&lt;1.0.1</td>
-<td align="center">0.2.2</td>
-<td align="center">==2.7, &gt;=3.5, &lt;=3.7</td>
-<td align="center">9.0, 10.0</td>
-</tr>
-</tbody></table>
-<h2 id="2-框架学习"><a href="#2-框架学习" class="headerlink" title="2. 框架学习"></a>2. 框架学习</h2><blockquote>
-<p>查看框架及系统版本</p>
-</blockquote>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> torch<span class="token punctuation">,</span> torchvision
-<span class="token keyword">import</span> mmpretrain
-<span class="token keyword">import</span> mmcv
-<span class="token keyword">import</span> mmengine
-<span class="token keyword">from</span> mmcv<span class="token punctuation">.</span>ops <span class="token keyword">import</span> get_compiling_cuda_version<span class="token punctuation">,</span> get_compiler_version
+                <h3 id="git-bash-安装-tree-exe"><a href="#git-bash-安装-tree-exe" class="headerlink" title="git bash 安装 tree.exe"></a>git bash 安装 tree.exe</h3><p>从 <a href="https://gnuwin32.sourceforge.net/packages/tree.htm" target="_blank" rel="noopener">Tree for Windows</a> 网站下载 Binaries zip 包，解压后将 <code>bin</code> 目录下的 <code>tree.exe</code> 放在 <code>D:\Git\mingw64\bin</code> 目录下。</p>
+<img src="/2023/07/18/mynote/20230718132456.png" width="20230718132456">
 
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Pytorch 版本'</span><span class="token punctuation">,</span> torch<span class="token punctuation">.</span>__version__<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'CUDA 是否可用'</span><span class="token punctuation">,</span>torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'MMCV版本'</span><span class="token punctuation">,</span> mmcv<span class="token punctuation">.</span>__version__<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'CUDA版本'</span><span class="token punctuation">,</span> get_compiling_cuda_version<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'编译器版本'</span><span class="token punctuation">,</span> get_compiler_version<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'mmcv版本'</span><span class="token punctuation">,</span>mmcv<span class="token punctuation">.</span>__version__<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'mmengine版本'</span><span class="token punctuation">,</span>mmengine<span class="token punctuation">.</span>__version__<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'mmpretrain版本'</span><span class="token punctuation">,</span> mmpretrain<span class="token punctuation">.</span>__version__<span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># Pytorch 版本 1.10.0+cu113</span>
-<span class="token comment" spellcheck="true"># CUDA 是否可用 True</span>
-<span class="token comment" spellcheck="true"># MMCV版本 2.0.1</span>
-<span class="token comment" spellcheck="true"># CUDA版本 11.3</span>
-<span class="token comment" spellcheck="true"># 编译器版本 GCC 9.3</span>
-<span class="token comment" spellcheck="true"># mmcv版本 2.0.1</span>
-<span class="token comment" spellcheck="true"># mmengine版本 0.8.1</span>
-<span class="token comment" spellcheck="true"># mmpretrain版本 1.0.0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
-<p>调用model</p>
+<p>tree 命令</p>
+<p>tree -C # 打印目录有颜色</p>
+<p>tree -h # 打印文件的大小（有单位）</p>
+<p>tree -s # 打印文件的大小（无单位）</p>
+<p>tree ./ –filelimit=10 # 只展示文件数小于10的目录</p>
 </blockquote>
-<pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">import</span> mmpretrain
-<span class="token keyword">from</span> mmpretrain <span class="token keyword">import</span> get_model<span class="token punctuation">,</span> list_models<span class="token punctuation">,</span> inference_model
+<img src="/2023/07/18/mynote/20230718134442.png" width="20230718134442">
 
-<span class="token comment" spellcheck="true"># 根据任务task和模式pattern查找可用模型</span>
-<span class="token comment" spellcheck="true"># 查找resnet18相关的训练模型</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>list_models<span class="token punctuation">(</span>task<span class="token operator">=</span><span class="token string">'Image Classification'</span><span class="token punctuation">,</span> pattern<span class="token operator">=</span><span class="token string">'resnet18'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># ['resnet18_8xb16_cifar10', 'resnet18_8xb32_in1k']</span>
-<span class="token comment" spellcheck="true"># 获取模型并查看其type</span>
-model <span class="token operator">=</span> get_model<span class="token punctuation">(</span><span class="token string">'resnet18_8xb32_in1k'</span><span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>type<span class="token punctuation">(</span>model<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># &lt;class 'mmpretrain.models.classifiers.image.ImageClassifier'></span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>type<span class="token punctuation">(</span>model<span class="token punctuation">.</span>backbone<span class="token punctuation">)</span><span class="token punctuation">)</span>
-<span class="token comment" spellcheck="true"># &lt;class 'mmpretrain.models.backbones.resnet.ResNet'></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<blockquote>
-<p>注册model</p>
+<h2 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h2><blockquote>
+<p>创建多级目录</p>
+<pre class="line-numbers language-shell"><code class="language-shell">mkdir -p ./example/{exp1,exp2}/exp3<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </blockquote>
-<h2 id="3-模型训练（finetune）"><a href="#3-模型训练（finetune）" class="headerlink" title="3. 模型训练（finetune）"></a>3. 模型训练（finetune）</h2><blockquote>
-<p>以ResNet18训练ImageNet-mini为例</p>
-</blockquote>
-<p>熟悉mmpretrain的configs</p>
-<h3 id="3-1"><a href="#3-1" class="headerlink" title="3.1"></a>3.1</h3><h3 id="3-2"><a href="#3-2" class="headerlink" title="3.2"></a>3.2</h3><h3 id="3-3"><a href="#3-3" class="headerlink" title="3.3"></a>3.3</h3><h2 id="模型推理"><a href="#模型推理" class="headerlink" title="模型推理"></a>模型推理</h2>
+
             </div>
             <hr />
 
@@ -845,9 +686,9 @@ model <span class="token operator">=</span> get_model<span class="token punctuat
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《3D | 学习mmpretrain框架》
+                    《mynote》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2023/07/17/mmpretrain-learning/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2023/07/18/mynote/" property="cc:attributionName"
                rel="cc:attributionURL">
                 Jonydom
             </a> 采用
@@ -888,7 +729,7 @@ model <span class="token operator">=</span> get_model<span class="token punctuat
         repo: 'godweiyang.github.io',
         owner: 'godweiyang',
         admin: "godweiyang",
-        id: '2023/07/17/mmpretrain-learning/',
+        id: '2023/07/18/mynote/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -1175,28 +1016,27 @@ model <span class="token operator">=</span> get_model<span class="token punctuat
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/07/17/imagenet1k-learning/">
+                <a href="/2023/07/19/chd/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Imagenet1k_learning">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="CHD">
                         
-                        <span class="card-title">Imagenet1k_learning</span>
+                        <span class="card-title">CHD</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
                             
-本文介绍ImageNet数据集与预处理详细步骤
+本文记录先心病实验的相关设置与数据整理
 
-1. ImageNet数据集介绍参考链接
-ImageNet是一种数据集，而不是神经网络模型。斯坦福大学教授李飞飞为了解决机器学习中过拟合和泛化的问题而牵头构建的数据集。该数据集从2007年
+1. 简介2. 数据处理3. 训练代码4. 实验结果
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-07-17
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2023-07-19
                         </span>
                         <span class="publish-author">
                             
@@ -1228,20 +1068,20 @@ ImageNet是一种数据集，而不是神经网络模型。斯坦福大学教授
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2023/07/17/5w2h-godweiyang/">
+                <a href="/2023/07/17/blog-develop/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="3D | 关于搭建个人博客的过程">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="blog_develop">
                         
-                        <span class="card-title">3D | 关于搭建个人博客的过程</span>
+                        <span class="card-title">blog_develop</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-When？什么时候开始写的？第一次写博客是 2015 年了，在 CSDN 和博客园上面，当时写文章是为了记录 ACM 竞赛的题解，陆陆续续写了几十篇。但是最后还是没有坚持下去，主要还是因为 CSDN 和博客园的体验太差了，写起文章来很难受
+                            Bug个人博客（Hexo + VScode + Paste Image + PicGo）1. 图片路径问题：本地与线上部署不一致原因：
+markdown文档中的图片路径格式一定要是 ![example](path/example.jpg) 
                         
                     </div>
                     <div class="publish-info">
@@ -1250,23 +1090,8 @@ When？什么时候开始写的？第一次写博客是 2015 年了，在 CSDN �
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/coding-note/" class="post-category" target="_blank">
-                                    coding note
-                                </a>
-                            
-                            
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/博客/" target="_blank">
-                        <span class="chip bg-color">博客</span>
-                    </a>
-                    
                 </div>
                 
             </div>

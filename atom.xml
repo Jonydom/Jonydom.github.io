@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jonydom.github.io/"/>
-  <updated>2023-07-17T13:40:42.668Z</updated>
+  <updated>2023-07-19T04:09:20.127Z</updated>
   <id>https://jonydom.github.io/</id>
   
   <author>
@@ -15,6 +15,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CHD</title>
+    <link href="https://jonydom.github.io/2023/07/19/chd/"/>
+    <id>https://jonydom.github.io/2023/07/19/chd/</id>
+    <published>2023-07-19T04:06:52.000Z</published>
+    <updated>2023-07-19T04:09:20.127Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;本文记录先心病实验的相关设置与数据整理&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;1-简介&quot;&gt;&lt;a href=&quot;#1-简介&quot; class=&quot;headerlink&quot; title=&quot;1. 简介&quot;&gt;&lt;/a&gt;1. 简介&lt;/h2&gt;&lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="coding note" scheme="https://jonydom.github.io/categories/coding-note/"/>
+    
+    
+      <category term="博客" scheme="https://jonydom.github.io/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mynote</title>
+    <link href="https://jonydom.github.io/2023/07/18/mynote/"/>
+    <id>https://jonydom.github.io/2023/07/18/mynote/</id>
+    <published>2023-07-18T05:21:02.000Z</published>
+    <updated>2023-07-19T12:29:24.289Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;git-bash-安装-tree-exe&quot;&gt;&lt;a href=&quot;#git-bash-安装-tree-exe&quot; class=&quot;headerlink&quot; title=&quot;git bash 安装 tree.exe&quot;&gt;&lt;/a&gt;git bash 安装
+        
+      
+    
+    </summary>
+    
+      <category term="coding note" scheme="https://jonydom.github.io/categories/coding-note/"/>
+    
+    
+      <category term="博客" scheme="https://jonydom.github.io/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>blog_develop</title>
@@ -43,7 +98,7 @@
     <link href="https://jonydom.github.io/2023/07/17/imagenet1k-learning/"/>
     <id>https://jonydom.github.io/2023/07/17/imagenet1k-learning/</id>
     <published>2023-07-17T09:30:45.000Z</published>
-    <updated>2023-07-17T11:29:20.065Z</updated>
+    <updated>2023-07-18T12:27:07.547Z</updated>
     
     <summary type="html">
     
@@ -51,7 +106,10 @@
       
         
         
-          &lt;h2 id=&quot;ImageNet数据集介绍&quot;&gt;&lt;a href=&quot;#ImageNet数据集介绍&quot; class=&quot;headerlink&quot; title=&quot;ImageNet数据集介绍&quot;&gt;&lt;/a&gt;ImageNet数据集介绍&lt;/h2&gt;&lt;h2 id=&quot;ImageNet数据集预处理&quot;&gt;&lt;a
+          &lt;blockquote&gt;
+&lt;p&gt;本文介绍ImageNet数据集与预处理详细步骤&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;1-ImageNet数据集介绍&quot;&gt;&lt;a href=&quot;#1-ImageNet数据集介绍&quot; class=&quot;headerlink&quot; title=&quot;1.
         
       
     
