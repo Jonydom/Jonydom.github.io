@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jonydom.github.io/"/>
-  <updated>2023-07-20T07:33:20.934Z</updated>
+  <updated>2023-08-10T09:25:10.468Z</updated>
   <id>https://jonydom.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode</title>
+    <link href="https://jonydom.github.io/2023/08/10/leetcode/"/>
+    <id>https://jonydom.github.io/2023/08/10/leetcode/</id>
+    <published>2023-08-10T08:14:10.000Z</published>
+    <updated>2023-08-10T09:25:10.468Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;本文记录算法学习过程中的一些笔记和要点~&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;学习链接&quot;&gt;&lt;a href=&quot;#学习链接&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="coding note" scheme="https://jonydom.github.io/categories/coding-note/"/>
+    
+    
+      <category term="博客" scheme="https://jonydom.github.io/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>CHD</title>
