@@ -11,7 +11,7 @@
     <meta name="description" content="
 本文记录先心病实验的相关设置与数据整理
 
-1. 简介2. 数据处理3. 训练代码4. 实验结果">
+1. 简介先天性心脏病（Congenital Heart Disease，CHD，简称先心病）是最常见的先天性畸形，可危及患儿的健康和生命，而影像学检查是诊断先心病的重要手段。近年来，使用深度学习">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -332,7 +332,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -487,14 +487,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    37
+                    624
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
                 
@@ -513,7 +513,79 @@
                 <blockquote>
 <p>本文记录先心病实验的相关设置与数据整理</p>
 </blockquote>
-<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><h2 id="2-数据处理"><a href="#2-数据处理" class="headerlink" title="2. 数据处理"></a>2. 数据处理</h2><h2 id="3-训练代码"><a href="#3-训练代码" class="headerlink" title="3. 训练代码"></a>3. 训练代码</h2><h2 id="4-实验结果"><a href="#4-实验结果" class="headerlink" title="4. 实验结果"></a>4. 实验结果</h2>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>先天性心脏病（Congenital Heart Disease，CHD，简称先心病）是最常见的先天性畸形，可危及患儿的健康和生命，而影像学检查是诊断先心病的重要手段。近年来，使用深度学习的方法辅助放射科医生来诊断先心病的研究越发广泛。有些工作使用CNN和U-net对未出生患儿超声图像的病灶区域进行分类与分割。还有些工作使用Seg-CNN对先心病患者的3D CT图像进行分类与分割。这些方法聚焦于对先心病病理的分析与研究。值得注意的是，在先心病早期的筛查与诊断过程中，胸片检查也同样占据重要地位，尤其是在资源匮乏地区。然而，先心病患者的胸片可能存在细微的改变，这可能会导致放射科医生的漏诊。所以，将深度学习的方法与胸片结合，辅助放射科医生早期快速高效的诊断先心病是一个很有前景的方向。</p>
+<p>结合华西数据中心，我们收集了一个先心病二分类的 chest X-ray 数据集。</p>
+<p>数据集目录如下：</p>
+<pre><code>
+$ tree -C --filelimit=10
+./CHD
+|-- normal_png_20220812 [403 entries exceeds filelimit, not opening dir]
+|-- normal_png_20221008 [520 entries exceeds filelimit, not opening dir]
+|-- normal_png_20221030 [1020 entries exceeds filelimit, not opening dir]
+|-- normal_png_20221225 [165 entries exceeds filelimit, not opening dir]
+|-- patient_png_20220812 [14 entries exceeds filelimit, not opening dir]
+|-- patient_png_20221008 [374 entries exceeds filelimit, not opening dir]
+|-- patient_png_20221030 [805 entries exceeds filelimit, not opening dir]
+|-- patient_png_20221225 [165 entries exceeds filelimit, not opening dir]
+
+normal-2108  patient-1358
+</code></pre><h2 id="2-任务描述"><a href="#2-任务描述" class="headerlink" title="2. 任务描述"></a>2. 任务描述</h2><h3 id="Task-1"><a href="#Task-1" class="headerlink" title="Task 1"></a>Task 1</h3><blockquote>
+<p>训练正常人与先心病患者的二分类任务</p>
+</blockquote>
+<h4 id="数据集划分"><a href="#数据集划分" class="headerlink" title="数据集划分"></a>数据集划分</h4>
+<table>    
+  <tr><th>train set</th><th>valid set</th><th>test set</th></tr>
+  <tr>
+  <td>normal_png_20220812<br>normal_png_20221008<br>normal_png_20221030<br>patient_png_20221008<br>patient_png_20221030</td>
+  <td>normal_png_20220812<br>normal_png_20221008<br>normal_png_20221030<br>patient_png_20221008<br>patient_png_20221030</td>
+  <td>normal_png_20221225<br>patient_png_20221225</td>
+  </tr>
+  <tr>
+  <td>2810</td><td>312</td><td>330</td>
+  </tr>
+</table>   
+
+
+
+
+<h4 id="模型选择"><a href="#模型选择" class="headerlink" title="模型选择"></a>模型选择</h4><p>基于timm库（0.6.11）选择轻量级模型-resnet18, densenet121, mobilenetv2_120d, mobilevit_s</p>
+<h4 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h4>
+<table>    
+  <tr>
+  <th>pretrained</th>
+  <th>model</th>
+  <th>accuracy</th>
+  <th>precision</th>
+  <th>recall</th>
+  <th>specificity</th>
+  <th>F1_score</th>
+  </tr>
+  <tr>
+    <td>True</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>   
+
+
+<p>pretrained: True<br>checkpoint: best<br>model: resnet18 [accuracy]:0.9848 [precision]:0.9878 [recall]:0.9818 [specificity]:0.9879 [F1_score]:0.9848<br>model: densenet121 [accuracy]:0.9939 [precision]:1.0000 [recall]:0.9879 [specificity]:1.0000 [F1_score]:0.9939<br>model: mobilenetv2_120d [accuracy]:0.9788 [precision]:0.9817 [recall]:0.9758 [specificity]:0.9818 [F1_score]:0.9787<br>model: mobilevit_s [accuracy]:0.9788 [precision]:0.9759 [recall]:0.9818 [specificity]:0.9758 [F1_score]:0.9789</p>
+<p>pretrained: False<br>checkpoint: best<br>model: resnet18 [accuracy]:0.9515 [precision]:0.9461 [recall]:0.9576 [specificity]:0.9455 [F1_score]:0.9518<br>model: densenet121 [accuracy]:0.9818 [precision]:0.9938 [recall]:0.9697 [specificity]:0.9939 [F1_score]:0.9816<br>model: mobilenetv2_120d [accuracy]:0.9212 [precision]:0.9064 [recall]:0.9394 [specificity]:0.9030 [F1_score]:0.9226<br>model: mobilevit_s [accuracy]:0.9515 [precision]:0.9461 [recall]:0.9576 [specificity]:0.9455 [F1_score]:0.9518</p>
+<h3 id="Task-2"><a href="#Task-2" class="headerlink" title="Task 2"></a>Task 2</h3><p><img src="https://cdn.jsdelivr.net/gh/Jonydom/myPic/img/20230720144304.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Jonydom/myPic/img/20230720150057.png" alt></p>
+<h2 id="3-训练代码"><a href="#3-训练代码" class="headerlink" title="3. 训练代码"></a>3. 训练代码</h2>
             </div>
             <hr />
 
@@ -1006,7 +1078,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="CHD">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="CHD">
                         
                         <span class="card-title">CHD</span>
                     </div>
@@ -1017,7 +1089,7 @@
                             
 本文记录先心病实验的相关设置与数据整理
 
-1. 简介2. 数据处理3. 训练代码4. 实验结果
+1. 简介先天性心脏病（Congenital Heart Disease，CHD，简称先心病）是最常见的先天性畸形，可危及患儿的健康和生命，而影像学检查是诊断先心病的重要手段。近年来，使用深度学习
                         
                     </div>
                     <div class="publish-info">
@@ -1059,7 +1131,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="mynote">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="mynote">
                         
                         <span class="card-title">mynote</span>
                     </div>
@@ -1269,7 +1341,7 @@ tree 命令
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">6.1k</span>
+            <span class="white-color">6.7k</span>
             
 
             <br>
